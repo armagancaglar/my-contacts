@@ -6,9 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository("ContactRepository")
 public interface ContactRepository extends JpaRepository<Contact, Long> {
     Page<Contact> findAll(Pageable pageable);
-    Page<Contact> findByNameContainingOrderByIdAsc(String name, Pageable pageable);
+    Page<Contact> findByNameIgnoreCaseContainingOrderByIdAsc(String name, Pageable pageable);
 }

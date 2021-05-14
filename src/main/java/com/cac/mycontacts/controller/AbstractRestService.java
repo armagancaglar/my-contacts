@@ -6,17 +6,15 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 
 public class AbstractRestService {
     protected RestResourceResponse createSuccessResponse(Object data) {
-        RestResourceResponse restResourceResponse = new RestResourceResponse(null, null, data);
-        return restResourceResponse;
+        return new RestResourceResponse(null, null, data);
     }
 
     protected RestResourceResponse createErrorResponse(String errorCode, String errorMessage, Object data) {
-        RestResourceResponse restResourceResponse = new RestResourceResponse(errorCode, errorMessage, data);
-        return restResourceResponse;
+        return new RestResourceResponse(errorCode, errorMessage, data);
     }
 
     protected RestResourceResponse createErrorResponse(String loggerMessage, Logger logger, Exception e) {
-        logger.error(loggerMessage + ": " + ExceptionUtils.getRootCauseMessage(e), e);
+        logger.error(String.format("%s : %s", loggerMessage, ExceptionUtils.getRootCauseMessage(e)), e);
         return createErrorResponse(e.getClass().getSimpleName(), e.getMessage() != null ? e.getMessage() : ExceptionUtils.getRootCauseMessage(e), null);
     }
 

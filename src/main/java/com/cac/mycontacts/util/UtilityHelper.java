@@ -3,6 +3,9 @@ package com.cac.mycontacts.util;
 import java.net.URL;
 
 public class UtilityHelper {
+    private UtilityHelper() {
+
+    }
 
     public static boolean isValidUrl(String url)
     {

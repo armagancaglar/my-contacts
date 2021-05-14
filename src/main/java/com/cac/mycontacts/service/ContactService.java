@@ -17,4 +17,7 @@ public interface ContactService {
     Page<Contact> getContactsWithPagination(Pageable pageable);
 
     Page<Contact> getContactsByNameContaining(String name, Pageable pageable);
+
+    Contact saveContact(Contact contact);
+
 }

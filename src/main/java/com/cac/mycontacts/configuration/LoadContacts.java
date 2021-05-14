@@ -15,10 +15,14 @@ import java.io.IOException;
 public class LoadContacts {
     private static final Logger log = LoggerFactory.getLogger(LoadContacts.class);
 
+    private final ExcelService excelService;
+    private final ContactService contactService;
+
     @Autowired
-    ExcelService excelService;
-    @Autowired
-    ContactService contactService;
+    public LoadContacts(ExcelService excelService, ContactService contactService) {
+        this.excelService = excelService;
+        this.contactService = contactService;
+    }
 
     @Bean
     void initializeContacts() {
