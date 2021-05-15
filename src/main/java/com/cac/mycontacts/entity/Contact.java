@@ -1,10 +1,9 @@
 package com.cac.mycontacts.entity;
 
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="Contacts")
+@Table(name="Contacts", indexes = @Index(columnList = "name"))
 public class Contact {
 
     @Id

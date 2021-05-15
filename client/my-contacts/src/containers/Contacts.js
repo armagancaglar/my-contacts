@@ -17,33 +17,18 @@ function Contacts() {
     useEffect(() => {
         setDataIsLoading(true);
 
-        if(!searchText) {
-            ContactsApi.loadContacts(page, size, (response) => {
-                setDataIsLoading(false);
-                if(response.data) {
-                    setContacts(response.data.content);
-                    setContactsCount(response.data.totalElements)
-                }
-            }, (error) => {
-                setDataIsLoading(false);
-                setContacts(undefined);
-                setContactsCount(0);
-                AppUtility.showErrorText("Error","Could not load contacts!" )
-            })
-        } else {
-            ContactsApi.searchContacts(searchText, page, size, (response) => {
-                setDataIsLoading(false);
-                if(response.data) {
-                    setContacts(response.data.content);
-                    setContactsCount(response.data.totalElements)
-                }
-            }, (error) => {
-                setDataIsLoading(false);
-                setContacts(undefined);
-                setContactsCount(0);
-                AppUtility.showErrorText("Error","Could not load contacts!" )
-            })
-        }
+        ContactsApi.searchContacts(searchText ? searchText : '', page, size, (response) => {
+            setDataIsLoading(false);
+            if(response.data) {
+                setContacts(response.data.content);
+                setContactsCount(response.data.totalElements)
+            }
+        }, (error) => {
+            setDataIsLoading(false);
+            setContacts(undefined);
+            setContactsCount(0);
+            AppUtility.showErrorText("Error","Could not load contacts!" )
+        })
     }, [page, size, searchText]);
 
     const getColumnSearchProps = dataIndex => ({

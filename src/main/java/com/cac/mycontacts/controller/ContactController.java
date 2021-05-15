@@ -22,14 +22,8 @@ public class ContactController extends AbstractRestService {
         this.contactService = contactService;
     }
 
-    @GetMapping("/all/page/{page}/size/{size}")
-    public RestResourceResponse getContactsWithPagination(@PathVariable("page") int page, @PathVariable("size") int size){
-        Page<Contact> contacts = contactService.getContactsWithPagination(PageRequest.of(page, size));
-        return createSuccessResponse(contacts);
-    }
-
-    @GetMapping("/search-by-name/{name}/page/{page}/size/{size}")
-    public RestResourceResponse getContactsByContactName(@PathVariable("name") String name, @PathVariable("page") int page, @PathVariable("size") int size){
+    @GetMapping("/search")
+    public RestResourceResponse searchContacts(@RequestParam("name") String name, @RequestParam("page") int page, @RequestParam("size") int size){
         Page<Contact> contacts;
         if(StringUtils.isBlank(name)) {
             contacts = contactService.getContactsWithPagination(PageRequest.of(page, size));

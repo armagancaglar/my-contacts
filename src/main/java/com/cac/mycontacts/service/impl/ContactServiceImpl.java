@@ -33,7 +33,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public boolean isValidContact(ContactDto contactDto) {
-        return !StringUtils.isBlank(contactDto.getName()) && UtilityHelper.isValidUrl(contactDto.getAvatarUrl());
+        return StringUtils.isNotBlank(contactDto.getName()) && UtilityHelper.isValidUrl(contactDto.getAvatarUrl());
     }
 
     @Override
