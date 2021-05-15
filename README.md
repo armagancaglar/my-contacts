@@ -1,7 +1,7 @@
-##My Contacts
+## My Contacts
 My Contacts is an application for listing your contacts. 
 The app loads the contacts from external **"people.csv"** file and import them in to the database.
-###Installation
+### Installation
  Server side reads its properties from an external file that named **mycontacts.properties**. Property file should contain the commands following below.
  ```bash
 //for the automatically creating tables
@@ -23,31 +23,31 @@ In the client app you need to define **REACT_APP_BASE_URL** in the **.env** file
 REACT_APP_BASE_URL=http://localhost:8080
 ```
 
-###Building Client App
+### Building Client App
 Run the yarn build command when the parent working directory(pwd) is the **mycontacts/client/my-contacts**.
 This script automatically builds the client app and copies the build files into the mycontacts/src/resources/static
 
-###Building Server App
+### Building Server App
 Run the mvn package command when the parent working directory(pwd) is the mycontacts
 You can find the **mycontacts-0.0.1-SNAPSHOT.jar** file that located into target folder
 
-###Running The Build Jar
+### Running The Build Jar
 Run the **java -jar mycontacts-0.0.1-SNAPSHOT.jar** command when pwd is the directory that have the files<br/>
 **mycontacts-0.0.1-SNAPSHOT.jar<br/>**
 **mycontacts.properties<br/>**
 **people.csv<br/>**
 **my-contacts-app.log**
 
-###Running Client App on local
+### Running Client App on local
 Run the **npm start** command when the pwd is the **mycontacts/client/my-contacts**. Client app uses the localhost:3000 by default.
 
-###Running Server App on local
+### Running Server App on local
 Run the **mvn spring-boot:run** command when the pwd is the **mycontacts**. Server app uses the localhost:8080 by default.
 
-###Logging
+### Logging
 You can find the logs in the my-contacts-app.log file.
 
-##REST Endpoint
+### REST Endpoint
 Request<br/>
 GET /contact/search?name=${name}&page=${page}&size=${size}<br/>
 
