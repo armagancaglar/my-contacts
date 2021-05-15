@@ -5,12 +5,15 @@ import com.cac.mycontacts.entity.Contact;
 import com.cac.mycontacts.service.ContactService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("contact")
+@PropertySource("file:mycontacts.properties")
+@CrossOrigin("${client.baseurl}")
 public class ContactController extends AbstractRestService {
     final ContactService contactService;
 
