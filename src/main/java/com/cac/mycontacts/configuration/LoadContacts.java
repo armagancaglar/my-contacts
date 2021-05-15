@@ -28,7 +28,7 @@ public class LoadContacts {
     void initializeContacts() {
         if(!contactService.isContactsLoadedBefore()) {
             try {
-                excelService.importContacts();
+                excelService.readCsvFileAndImportContacts();
             } catch (IOException e) {
                 log.error(ExceptionUtils.getRootCauseMessage(e));
             }

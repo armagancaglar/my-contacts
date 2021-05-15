@@ -1,6 +1,7 @@
 package com.cac.mycontacts.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="Contacts", indexes = @Index(columnList = "name"))
@@ -38,5 +39,20 @@ public class Contact {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return id == contact.id &&
+                Objects.equals(name, contact.name) &&
+                Objects.equals(avatarUrl, contact.avatarUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, avatarUrl);
     }
 }

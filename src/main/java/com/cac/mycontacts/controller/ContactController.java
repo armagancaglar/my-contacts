@@ -1,6 +1,6 @@
 package com.cac.mycontacts.controller;
 
-import com.cac.mycontacts.dto.RestResourceResponse;
+import com.cac.mycontacts.dto.ContactRestResourceResponse;
 import com.cac.mycontacts.entity.Contact;
 import com.cac.mycontacts.service.ContactService;
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("contact")
 @PropertySource("file:mycontacts.properties")
 @CrossOrigin("${client.baseurl}")
-public class ContactController extends AbstractRestService {
+public class ContactController extends AbstractContactRestService {
     final ContactService contactService;
 
     @Autowired
@@ -23,7 +23,7 @@ public class ContactController extends AbstractRestService {
     }
 
     @GetMapping("/search")
-    public RestResourceResponse searchContacts(@RequestParam("name") String name, @RequestParam("page") int page, @RequestParam("size") int size){
+    public ContactRestResourceResponse searchContacts(@RequestParam("name") String name, @RequestParam("page") int page, @RequestParam("size") int size){
         Page<Contact> contacts;
         if(StringUtils.isBlank(name)) {
             contacts = contactService.getContactsWithPagination(PageRequest.of(page, size));
