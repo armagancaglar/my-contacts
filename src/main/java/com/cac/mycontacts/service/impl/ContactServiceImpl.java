@@ -22,10 +22,13 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact save(ContactDto contactDto) {
-        Contact contact = new Contact();
-        contact.setName(contactDto.getName());
-        contact.setAvatarUrl(contactDto.getAvatarUrl());
-        return saveContact(contact);
+        if(null != contactDto) {
+            Contact contact = new Contact();
+            contact.setName(contactDto.getName());
+            contact.setAvatarUrl(contactDto.getAvatarUrl());
+            return saveContact(contact);
+        }
+        return null;
     }
 
     @Override

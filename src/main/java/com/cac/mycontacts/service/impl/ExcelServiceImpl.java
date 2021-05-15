@@ -31,16 +31,18 @@ public class ExcelServiceImpl implements ExcelService {
     @Override
     public void importContacts() throws IOException {
         Resource resource = resourceLoader.getResource("classpath:people.csv");
-        InputStream inputStream = resource.getInputStream();
+        if(resource.exists()) {
+            InputStream inputStream = resource.getInputStream();
 
-        Reader reader = new InputStreamReader(new BOMInputStream(inputStream), StandardCharsets.UTF_8);
-        CSVParser parser = new CSVParser(reader, CSVFormat.EXCEL.withAllowMissingColumnNames().withIgnoreEmptyLines());
+            Reader reader = new InputStreamReader(new BOMInputStream(inputStream), StandardCharsets.UTF_8);
+            CSVParser parser = new CSVParser(reader, CSVFormat.EXCEL.withAllowMissingColumnNames().withIgnoreEmptyLines());
 
-        for (final CSVRecord row : parser){
-            if(row.getRecordNumber() != 1) {
-                ContactDto contactDto = new ContactDto(row.get(0), row.get(1));
-                if(contactService.isValidContact(contactDto)) {
-                    contactService.save(contactDto);
+            for (final CSVRecord row : parser){
+                if(row.getRecordNumber() != 1) {
+                    ContactDto contactDto = new ContactDto(row.get(0), row.get(1));
+                    if(contactService.isValidContact(contactDto)) {
+                        contactService.save(contactDto);
+                    }
                 }
             }
         }
